@@ -1,4 +1,4 @@
-package com.biel.notetree.service;
+package com.biel.notetree.service.resources;
 
 import com.biel.notetree.model.Account;
 import org.springframework.hateoas.Link;

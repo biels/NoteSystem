@@ -3,6 +3,7 @@ package com.biel.notetree.service;
 import com.biel.notetree.model.Account;
 import com.biel.notetree.repository.AccountRepository;
 import com.biel.notetree.service.exceptions.UserNotFoundException;
+import com.biel.notetree.service.resources.AccountResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
