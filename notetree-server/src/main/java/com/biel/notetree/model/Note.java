@@ -20,17 +20,24 @@ public class Note {
 
     private String path;
     private String title;
-    private String description;
+    private String content;
     private Date deadline;
     private double estimatedCompletionTime;
 
     Note() {
     }
 
-    public Note(String path, String title, String description) {
+    public Note(Account account, String path, String title, String content) {
+        this.account = account;
         this.path = path;
         this.title = title;
-        this.description = description;
+        this.content = content;
+    }
+
+    public Note(Account account, String path, String content) {
+        this.account = account;
+        this.path = path;
+        this.content = content;
     }
 
     public Long getId() {
@@ -65,12 +72,12 @@ public class Note {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Date getDeadline() {

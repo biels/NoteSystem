@@ -13,23 +13,24 @@ import org.springframework.web.bind.annotation.*;
  * Created by Biel on 11/11/2016.
  */
 @RestController
-@RequestMapping("/account/{userId}/task")
-public class TaskService {
+@RequestMapping("/accounts/{userId}/note")
+public class NoteService {
     AccountService accountService;
     NoteRepository noteRepository;
 
     @Autowired
-    public TaskService(AccountService accountService, NoteRepository noteRepository) {
+    public NoteService(AccountService accountService, NoteRepository noteRepository) {
         this.accountService = accountService;
         this.noteRepository = noteRepository;
     }
 
-    @RequestMapping(name = "", method = RequestMethod.GET)
+    @RequestMapping(name = "/", method = RequestMethod.GET)
     public Note get(@PathVariable String userId, @RequestParam String path) throws UserNotFoundException, TaskNotFoundException {
+        //return new Note(path, "Sample title", "Sample content by " + userId);
         return noteRepository.findOneByAccountAndPath(accountService.getAccount(userId), path).orElseThrow(() -> new TaskNotFoundException(path));
     }
     @RequestMapping(name = "", method = RequestMethod.POST)
-    ResponseEntity create(@PathVariable String userId, @RequestParam String path){
+    public ResponseEntity create(@PathVariable String userId, @RequestParam String path){
         return ResponseEntity.ok(HttpEntity.EMPTY);
     }
 

@@ -49,7 +49,7 @@ public class AccountService {
         return ResponseEntity.created(URI.create(link.getHref())).build();
     }
 
-    protected Account getAccount(String userId) throws UserNotFoundException {
+    public Account getAccount(String userId) throws UserNotFoundException {
         //Authenticate user here
         return accountRepository.findByUsername(userId).orElseThrow(() -> new UserNotFoundException(userId));
     }
