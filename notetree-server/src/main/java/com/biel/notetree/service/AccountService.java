@@ -42,7 +42,7 @@ public class AccountService {
     ResponseEntity register(@RequestBody Account input){ // Still throws exception
         String userId = input.getUsername();
         String password = input.getPassword();
-        if (accountRepository.findByUsername(userId).isPresent()) return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        if (accountRepository.findByUsername(userId).isPresent()) return ResponseEntity.status(HttpStatus.CONFLICT).body("Username " + userId + " already exists.");
         Account account = accountRepository.save(new Account(userId, password));
         Link link = new AccountResource(account).getLink(Link.REL_SELF);
         return ResponseEntity.created(URI.create(link.getHref())).build();
