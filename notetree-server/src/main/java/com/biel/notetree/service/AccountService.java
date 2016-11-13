@@ -3,6 +3,7 @@ package com.biel.notetree.service;
 import com.biel.notetree.model.Account;
 import com.biel.notetree.repository.AccountRepository;
 import com.biel.notetree.service.exceptions.UserNotFoundException;
+import com.biel.notetree.service.requests.RegisterRequest;
 import com.biel.notetree.service.resources.AccountResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
@@ -39,9 +40,9 @@ public class AccountService {
 
     //Register
     @RequestMapping(value = "", method = RequestMethod.POST)
-    ResponseEntity register(@RequestBody Account input){ // Still throws exception
-        String userId = input.getUsername();
-        String password = input.getPassword();
+    ResponseEntity register(@RequestBody RegisterRequest registerRequest){ // Still throws exception
+        String userId = registerRequest.getUsername();
+        String password = registerRequest.getPassword();
         if (accountRepository.findByUsername(userId).isPresent()) return ResponseEntity.status(HttpStatus.CONFLICT).body("Username " + userId + " already exists.");
         Account account = accountRepository.save(new Account(userId, password));
         Link link = new AccountResource(account).getLink(Link.REL_SELF);

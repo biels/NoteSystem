@@ -2,10 +2,7 @@ package com.biel.notetree.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +15,7 @@ public class Account {
     @GeneratedValue
     private Long id;
 
+    @Column(unique = true)
     private String username;
     @JsonIgnore
     private String password;
